@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge - Learning Roadmap</title>
+
+    <!-- Common stylesheet used across student pages -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="sidebar">
+
+            <h2 class="logo">SkillBridge</h2>
+
+            <nav>
+                <a href="index.html">Dashboard</a>
+                <a href="profile.html">Profile</a>
+                <a href="skills.html">Skills</a>
+                <a href="assessment.html">Assessment</a>
+
+                <!-- Current page -->
+                <a href="roadmap.html" class="active">Roadmap</a>
+
+                <a href="#">Opportunities</a>
+                <a href="#">Applications</a>
+            </nav>
+
+            <button class="logout-btn">Logout</button>
+
+        </aside>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="main-content">
+
+            <!-- Page heading -->
+            <header class="topbar">
+
+                <div>
+                    <h1>Learning Roadmap</h1>
+
+                    <p>
+                        Follow your personalized path to improve missing skills.
+                    </p>
+                </div>
+
+            </header>
+
+
+            <!-- ================= ROADMAP SUMMARY ================= -->
+            <section class="stats">
+
+                <!--
+                    BACKEND INTEGRATION:
+                    These values will later come from
+                    skill-gap and roadmap APIs.
+                -->
+
+                <div class="card">
+                    <p>Skills To Improve</p>
+                    <h2 id="roadmapSkillCount">--</h2>
+                    <span>Based on your skill gaps</span>
+                </div>
+
+                <div class="card">
+                    <p>Completed Steps</p>
+                    <h2 id="completedRoadmapSteps">--</h2>
+                    <span>Your current progress</span>
+                </div>
+
+                <div class="card">
+                    <p>Roadmap Progress</p>
+                    <h2 id="roadmapProgress">--</h2>
+                    <span>Overall roadmap completion</span>
+                </div>
+
+                <div class="card">
+                    <p>Target Role</p>
+                    <h2 id="targetRole">--</h2>
+                    <span>Selected career goal</span>
+                </div>
+
+            </section>
+
+
+            <!-- ================= PERSONALIZED ROADMAP ================= -->
+            <section class="panel">
+
+                <div class="panel-heading">
+                    <h2>Your Roadmap</h2>
+                </div>
+
+
+                <!--
+                    BACKEND INTEGRATION:
+
+                    Backend can later send roadmap data like:
+
+                    [
+                        {
+                            skill: "React",
+                            priority: "High",
+                            steps: [...]
+                        }
+                    ]
+
+                    Frontend will dynamically create roadmap
+                    items inside this container.
+                -->
+                <div id="roadmapContainer" class="empty-state">
+
+                    <p>
+                        Your personalized learning roadmap will appear here.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= ROADMAP PROGRESS ================= -->
+            <section class="panel roadmap-section">
+
+                <div class="panel-heading">
+                    <h2>Progress Tracking</h2>
+                </div>
+
+                <p class="section-description">
+                    Track completed learning steps and upcoming goals.
+                </p>
+
+
+                <!--
+                    BACKEND INTEGRATION:
+                    Progress values will later come
+                    from saved roadmap progress.
+                -->
+                <div class="progress">
+
+                    <div
+                        id="roadmapProgressBar"
+                        class="progress-value roadmap-progress-value">
+                    </div>
+
+                </div>
+
+                <p id="roadmapProgressText" class="progress-text">
+                    Progress data not available yet.
+                </p>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

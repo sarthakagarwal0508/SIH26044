@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge - Opportunities</title>
+
+    <!-- Common stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="sidebar">
+
+            <h2 class="logo">SkillBridge</h2>
+
+            <nav>
+                <a href="index.html">Dashboard</a>
+                <a href="profile.html">Profile</a>
+                <a href="skills.html">Skills</a>
+                <a href="assessment.html">Assessment</a>
+                <a href="roadmap.html">Roadmap</a>
+
+                <!-- Current page -->
+                <a href="opportunities.html" class="active">Opportunities</a>
+
+                <a href="#">Applications</a>
+            </nav>
+
+            <button class="logout-btn">Logout</button>
+
+        </aside>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="main-content">
+
+            <!-- ================= PAGE HEADING ================= -->
+            <header class="topbar">
+
+                <div>
+                    <h1>Opportunities</h1>
+
+                    <p>
+                        Discover internships and jobs matching your skills.
+                    </p>
+                </div>
+
+            </header>
+
+
+            <!-- ================= OPPORTUNITY SUMMARY ================= -->
+            <section class="stats">
+
+                <!--
+                    BACKEND INTEGRATION:
+                    These values will later come from
+                    job/internship and matching APIs.
+                -->
+
+                <div class="card">
+                    <p>Total Opportunities</p>
+                    <h2 id="totalOpportunities">--</h2>
+                    <span>Available jobs and internships</span>
+                </div>
+
+                <div class="card">
+                    <p>Best Match</p>
+                    <h2 id="bestMatch">--</h2>
+                    <span>Your highest matching opportunity</span>
+                </div>
+
+                <div class="card">
+                    <p>Internships</p>
+                    <h2 id="internshipCount">--</h2>
+                    <span>Available internships</span>
+                </div>
+
+                <div class="card">
+                    <p>Jobs</p>
+                    <h2 id="jobCount">--</h2>
+                    <span>Available job opportunities</span>
+                </div>
+
+            </section>
+
+
+            <!-- ================= FILTER SECTION ================= -->
+            <section class="panel">
+
+                <div class="panel-heading">
+                    <h2>Find Opportunities</h2>
+                </div>
+
+                <!--
+                    FRONTEND:
+                    These filters will later be connected
+                    using JavaScript / React.
+
+                    Backend may also receive these values
+                    as search/filter parameters.
+                -->
+                <div class="opportunity-filters">
+
+                    <input
+                        type="text"
+                        id="opportunitySearch"
+                        placeholder="Search by role or company">
+
+                    <select id="opportunityType">
+
+                        <option value="">
+                            All Types
+                        </option>
+
+                        <option value="internship">
+                            Internship
+                        </option>
+
+                        <option value="job">
+                            Job
+                        </option>
+
+                    </select>
+
+                    <select id="matchFilter">
+
+                        <option value="">
+                            Match Score
+                        </option>
+
+                        <option value="high">
+                            High Match
+                        </option>
+
+                        <option value="medium">
+                            Medium Match
+                        </option>
+
+                    </select>
+
+                    <button class="primary-btn">
+                        Search
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= RECOMMENDED OPPORTUNITIES ================= -->
+            <section class="panel opportunities-page">
+
+                <div class="panel-heading">
+
+                    <h2>Recommended For You</h2>
+
+                </div>
+
+
+                <!--
+                    BACKEND INTEGRATION:
+
+                    Matching engine will later send data like:
+
+                    {
+                        opportunityId,
+                        title,
+                        company,
+                        type,
+                        location,
+                        requiredSkills,
+                        matchPercentage
+                    }
+
+                    Frontend will dynamically create
+                    opportunity cards inside this container.
+                -->
+                <div id="opportunityList" class="empty-state">
+
+                    <p>
+                        Matching opportunities will appear here.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

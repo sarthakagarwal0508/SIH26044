@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge - Assessment</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="sidebar">
+
+            <h2 class="logo">SkillBridge</h2>
+
+            <nav>
+                <a href="index.html">Dashboard</a>
+                <a href="profile.html">Profile</a>
+                <a href="skills.html">Skills</a>
+
+                <!-- Current page -->
+                <a href="assessment.html" class="active">Assessment</a>
+
+                <a href="#">Roadmap</a>
+                <a href="#">Opportunities</a>
+                <a href="#">Applications</a>
+            </nav>
+
+            <button class="logout-btn">Logout</button>
+
+        </aside>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Skill Assessment</h1>
+
+                    <p>
+                        Take assessments to evaluate and improve your skills.
+                    </p>
+                </div>
+
+            </header>
+
+
+            <!-- ================= ASSESSMENT OVERVIEW ================= -->
+            <section class="stats">
+
+                <!-- Backend values will be connected later -->
+
+                <div class="card">
+                    <p>Available Assessments</p>
+                    <h2 id="availableAssessments">--</h2>
+                    <span>Assessments available for you</span>
+                </div>
+
+                <div class="card">
+                    <p>Completed</p>
+                    <h2 id="completedAssessments">--</h2>
+                    <span>Assessments completed</span>
+                </div>
+
+                <div class="card">
+                    <p>Average Score</p>
+                    <h2 id="assessmentAverage">--</h2>
+                    <span>Your overall assessment score</span>
+                </div>
+
+                <div class="card">
+                    <p>Last Assessment</p>
+                    <h2 id="lastAssessment">--</h2>
+                    <span>Most recent attempt</span>
+                </div>
+
+            </section>
+
+
+            <!-- ================= AVAILABLE ASSESSMENTS ================= -->
+            <section class="panel">
+
+                <div class="panel-heading">
+                    <h2>Available Assessments</h2>
+                </div>
+
+
+                <!--
+                    BACKEND INTEGRATION LATER:
+
+                    Backend can send assessments such as:
+
+                    {
+                        id,
+                        title,
+                        description,
+                        duration,
+                        totalQuestions
+                    }
+
+                    Frontend will dynamically create cards here.
+                -->
+                <div id="assessmentList" class="empty-state">
+
+                    <p>
+                        Available assessments will appear here.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= DEMO FRONTEND INTERACTION ================= -->
+            <section class="panel assessment-demo">
+
+                <div class="panel-heading">
+                    <h2>Assessment Demo</h2>
+                </div>
+
+                <p class="section-description">
+                    This demo is only for understanding frontend interaction.
+                </p>
+
+                <button id="startAssessmentBtn" class="primary-btn">
+                    Start Assessment
+                </button>
+
+                <!-- Initially hidden -->
+                <div id="assessmentMessage" class="assessment-message">
+
+                    Assessment started successfully.
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- JavaScript file -->
+    <script src="assessment.js"></script>
+
+</body>
+
+</html>

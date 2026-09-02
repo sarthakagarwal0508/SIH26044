@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge - My Skills</title>
+
+    <!-- Common stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="sidebar">
+
+            <h2 class="logo">SkillBridge</h2>
+
+            <nav>
+                <a href="index.html">Dashboard</a>
+                <a href="profile.html">Profile</a>
+
+                <!-- Current page -->
+                <a href="skills.html" class="active">Skills</a>
+
+                <a href="assessment.html">Assessment</a>
+                <a href="roadmap.html">Roadmap</a>
+                <a href="opportunities.html">Opportunities</a>
+                <a href="applications.html">Applications</a>
+            </nav>
+
+            <button class="logout-btn">Logout</button>
+
+        </aside>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="main-content">
+
+            <!-- Page heading -->
+            <header class="topbar">
+
+                <div>
+                    <h1>My Skills</h1>
+
+                    <p>
+                        View your evaluated skills and track your progress.
+                    </p>
+                </div>
+
+            </header>
+
+
+            <!-- ================= SKILL OVERVIEW ================= -->
+            <section class="stats">
+
+                <!--
+                    BACKEND INTEGRATION:
+                    These values will later come from
+                    student skill/assessment data.
+                -->
+
+                <div class="card">
+                    <p>Total Skills</p>
+                    <h2 id="totalSkills">--</h2>
+                    <span>Skills in your profile</span>
+                </div>
+
+                <div class="card">
+                    <p>Average Score</p>
+                    <h2 id="averageSkillScore">--</h2>
+                    <span>Based on assessments</span>
+                </div>
+
+                <div class="card">
+                    <p>Strong Skills</p>
+                    <h2 id="strongSkills">--</h2>
+                    <span>Your strongest areas</span>
+                </div>
+
+                <div class="card">
+                    <p>Skills To Improve</p>
+                    <h2 id="skillsToImprove">--</h2>
+                    <span>Recommended improvement areas</span>
+                </div>
+
+            </section>
+
+
+            <!-- ================= SKILL LIST ================= -->
+            <section class="panel">
+
+                <div class="panel-heading">
+
+                    <h2>Skill Evaluation</h2>
+
+                    <!-- Will later navigate to assessment -->
+                    <a href="#">Take Assessment</a>
+
+                </div>
+
+
+                <!--
+                    BACKEND INTEGRATION:
+
+                    Skills will NOT be manually written here.
+
+                    Backend/assessment data can later provide:
+
+                    skill name
+                    skill score
+                    skill level
+
+                    JavaScript/React will dynamically create
+                    the skill cards inside this container.
+                -->
+                <div id="skillsList" class="empty-state">
+
+                    <p>
+                        Complete an assessment to view your evaluated skills.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= SKILL VERIFICATION ================= -->
+            <section class="panel skills-section">
+
+                <div class="panel-heading">
+
+                    <h2>Skill Verification</h2>
+
+                </div>
+
+                <p class="section-description">
+                    Verified skills and supporting evidence will appear here.
+                </p>
+
+
+                <!--
+                    FUTURE INTEGRATION:
+
+                    This section can display skill evidence such as:
+                    certificates,
+                    assessments,
+                    projects,
+                    or other verified proof.
+
+                    Data will come from backend.
+                -->
+                <div id="verifiedSkills" class="empty-state">
+
+                    <p>
+                        No verified skill evidence available yet.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

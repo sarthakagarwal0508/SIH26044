@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge - Applications</title>
+
+    <!-- Common stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="sidebar">
+
+            <h2 class="logo">SkillBridge</h2>
+
+            <nav>
+                <a href="index.html">Dashboard</a>
+                <a href="profile.html">Profile</a>
+                <a href="skills.html">Skills</a>
+                <a href="assessment.html">Assessment</a>
+                <a href="roadmap.html">Roadmap</a>
+                <a href="opportunities.html">Opportunities</a>
+
+                <!-- Current page -->
+                <a href="applications.html" class="active">Applications</a>
+            </nav>
+
+            <button class="logout-btn">Logout</button>
+
+        </aside>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="main-content">
+
+            <!-- Page heading -->
+            <header class="topbar">
+
+                <div>
+                    <h1>My Applications</h1>
+
+                    <p>
+                        Track all your job and internship applications.
+                    </p>
+                </div>
+
+            </header>
+
+
+            <!-- ================= APPLICATION SUMMARY ================= -->
+            <section class="stats">
+
+                <!--
+                    BACKEND INTEGRATION:
+                    These counts will later come from application API.
+                -->
+
+                <div class="card">
+                    <p>Total Applications</p>
+                    <h2 id="totalApplications">--</h2>
+                    <span>All submitted applications</span>
+                </div>
+
+                <div class="card">
+                    <p>Under Review</p>
+                    <h2 id="underReviewApplications">--</h2>
+                    <span>Currently being reviewed</span>
+                </div>
+
+                <div class="card">
+                    <p>Shortlisted</p>
+                    <h2 id="shortlistedApplications">--</h2>
+                    <span>Applications shortlisted</span>
+                </div>
+
+                <div class="card">
+                    <p>Rejected</p>
+                    <h2 id="rejectedApplications">--</h2>
+                    <span>Applications not selected</span>
+                </div>
+
+            </section>
+
+
+            <!-- ================= APPLICATION FILTER ================= -->
+            <section class="panel">
+
+                <div class="panel-heading">
+                    <h2>Filter Applications</h2>
+                </div>
+
+                <!--
+                    FRONTEND:
+                    Filters will later work using JS / React.
+                -->
+                <div class="application-filters">
+
+                    <input
+                        type="text"
+                        id="applicationSearch"
+                        placeholder="Search by role or company">
+
+                    <select id="applicationStatus">
+
+                        <option value="">
+                            All Status
+                        </option>
+
+                        <option value="applied">
+                            Applied
+                        </option>
+
+                        <option value="review">
+                            Under Review
+                        </option>
+
+                        <option value="shortlisted">
+                            Shortlisted
+                        </option>
+
+                        <option value="rejected">
+                            Rejected
+                        </option>
+
+                    </select>
+
+                    <button class="primary-btn">
+                        Search
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= APPLICATION LIST ================= -->
+            <section class="panel applications-page">
+
+                <div class="panel-heading">
+
+                    <h2>Application History</h2>
+
+                </div>
+
+
+                <!--
+                    BACKEND INTEGRATION:
+
+                    Backend may later send data such as:
+
+                    {
+                        applicationId,
+                        opportunityTitle,
+                        company,
+                        appliedDate,
+                        status,
+                        matchPercentage
+                    }
+
+                    Frontend will dynamically create
+                    application cards inside this container.
+                -->
+                <div id="applicationList" class="empty-state">
+
+                    <p>
+                        Your submitted applications will appear here.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
