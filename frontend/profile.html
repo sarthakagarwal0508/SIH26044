@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge - Student Profile</title>
+
+    <!-- Same CSS file used across student frontend -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="sidebar">
+
+            <h2 class="logo">SkillBridge</h2>
+
+            <nav>
+
+                <a href="index.html">
+                    Dashboard
+                </a>
+
+                <a href="profile.html"
+                   class="active">
+                    Profile
+                </a>
+
+                <a href="#">Skills</a>
+                <a href="#">Assessment</a>
+                <a href="#">Roadmap</a>
+                <a href="#">Opportunities</a>
+                <a href="#">Applications</a>
+
+            </nav>
+
+
+            <!-- Authentication functionality later -->
+            <button class="logout-btn">
+                Logout
+            </button>
+
+        </aside>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="main-content">
+
+
+            <!-- ================= PAGE HEADING ================= -->
+            <header class="topbar">
+
+                <div>
+
+                    <h1>Student Profile</h1>
+
+                    <p>
+                        Manage academic and professional information.
+                    </p>
+
+                </div>
+
+            </header>
+
+
+            <!-- ================= PROFILE SUMMARY ================= -->
+            <section class="panel profile-header">
+
+
+                <!--
+                    BACKEND INTEGRATION:
+
+                    Profile image / initials will later
+                    come from logged-in student data.
+                -->
+                <div class="profile-big-avatar"
+                     id="profileAvatar">
+
+                    --
+
+                </div>
+
+
+                <!--
+                    BACKEND DATA:
+                    Student name
+                    Course
+                    Institution
+                -->
+                <div class="profile-main-info">
+
+                    <h2 id="profileName">
+                        Student Name
+                    </h2>
+
+                    <p id="profileCourse">
+                        Course information
+                    </p>
+
+                    <p id="profileInstitution">
+                        Institution information
+                    </p>
+
+                </div>
+
+
+                <!--
+                    FRONTEND FUNCTIONALITY LATER:
+                    Button will open Edit Profile form.
+                -->
+                <button class="edit-profile-btn">
+                    Edit Profile
+                </button>
+
+            </section>
+
+
+            <!-- ================= PERSONAL INFORMATION ================= -->
+            <section class="panel profile-section">
+
+                <div class="panel-heading">
+
+                    <h2>
+                        Personal Information
+                    </h2>
+
+                </div>
+
+
+                <!--
+                    BACKEND INTEGRATION:
+
+                    Values inside these fields
+                    will be received from database/API.
+                -->
+                <div class="profile-grid">
+
+
+                    <div class="profile-field">
+
+                        <label>Full Name</label>
+
+                        <p id="fullName">
+                            --
+                        </p>
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>Email</label>
+
+                        <p id="email">
+                            --
+                        </p>
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>Phone</label>
+
+                        <p id="phone">
+                            --
+                        </p>
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>Location</label>
+
+                        <p id="location">
+                            --
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= ACADEMIC INFORMATION ================= -->
+            <section class="panel profile-section">
+
+                <div class="panel-heading">
+
+                    <h2>
+                        Academic Information
+                    </h2>
+
+                </div>
+
+
+                <!--
+                    Academic information will
+                    come from backend student profile.
+                -->
+                <div class="profile-grid">
+
+
+                    <div class="profile-field">
+
+                        <label>Institution</label>
+
+                        <p id="institution">
+                            --
+                        </p>
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>Course</label>
+
+                        <p id="course">
+                            --
+                        </p>
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>Year</label>
+
+                        <p id="academicYear">
+                            --
+                        </p>
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>Academic Score</label>
+
+                        <p id="academicScore">
+                            --
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= PROFESSIONAL LINKS ================= -->
+            <section class="panel profile-section">
+
+                <div class="panel-heading">
+
+                    <h2>
+                        Professional Profile
+                    </h2>
+
+                </div>
+
+
+                <div class="profile-grid">
+
+
+                    <div class="profile-field">
+
+                        <label>GitHub</label>
+
+                        <p id="githubLink">
+                            --
+                        </p>
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>LinkedIn</label>
+
+                        <p id="linkedinLink">
+                            --
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= SKILLS ================= -->
+            <section class="panel profile-section">
+
+                <div class="panel-heading">
+
+                    <h2>
+                        Skills
+                    </h2>
+
+                </div>
+
+
+                <!--
+                    BACKEND INTEGRATION:
+
+                    Student skill data will be
+                    generated after assessment.
+
+                    Frontend will create skill tags
+                    dynamically later.
+                -->
+                <div id="profileSkills"
+                     class="empty-state">
+
+                    <p>
+                        Student skills will appear here.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= DOCUMENTS ================= -->
+            <section class="panel profile-section">
+
+                <div class="panel-heading">
+
+                    <h2>
+                        Documents
+                    </h2>
+
+                </div>
+
+
+                <!-- ================= RESUME ================= -->
+                <div class="document-row">
+
+                    <div>
+
+                        <h3>Resume</h3>
+
+                        <p>
+                            Add or update your resume.
+                        </p>
+
+                    </div>
+
+
+                    <!--
+                        BACKEND INTEGRATION LATER:
+                        File upload API will be connected here.
+                    -->
+                    <button class="secondary-btn">
+                        Upload Resume
+                    </button>
+
+                </div>
+
+
+                <!-- ================= CERTIFICATES ================= -->
+                <div class="document-row">
+
+                    <div>
+
+                        <h3>Certificates</h3>
+
+                        <p>
+                            Add certificates to verify skills.
+                        </p>
+
+                    </div>
+
+
+                    <button class="secondary-btn">
+                        Add Certificate
+                    </button>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
