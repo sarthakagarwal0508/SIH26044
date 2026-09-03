@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
 // ==================== SIGNUP ====================
@@ -71,7 +72,7 @@ const login = async (req, res) => {
             });
         }
 
-        // Find user by email
+        // Find user
         const user = await User.findOne({ email });
 
         if (!user) {
@@ -81,7 +82,7 @@ const login = async (req, res) => {
             });
         }
 
-        // Compare password with hashed password
+        // Compare password
         const isPasswordCorrect = await bcrypt.compare(
             password,
             user.password
@@ -94,10 +95,23 @@ const login = async (req, res) => {
             });
         }
 
+        // Generate JWT token
+        const token = jwt.sign(
+            {
+                id: user._id,
+                role: user.role
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: "30d"
+            }
+        );
+
         // Login successful
         res.status(200).json({
             success: true,
             message: "Login successful",
+            token,
             user: {
                 id: user._id,
                 name: user.name,
