@@ -1,11 +1,16 @@
 require("dotenv").config();
 
 const express = require("express");
+
 const connectDB = require("./config/db");
+
 const authRoutes = require("./routes/authRoutes");
+const jobRoutes = require("./routes/jobRoutes");
+
 const authMiddleware = require("./middleware/authMiddleware");
 
 const app = express();
+
 const PORT = 5000;
 
 // Middleware
@@ -24,6 +29,8 @@ app.get("/api/health", (req, res) => {
 // Authentication routes
 app.use("/api/auth", authRoutes);
 
+// Job routes
+app.use("/api/jobs", jobRoutes);
 
 // ==================== PROTECTED ROUTE ====================
 
@@ -35,7 +42,6 @@ app.get("/api/protected", authMiddleware, (req, res) => {
         user: req.user
     });
 });
-
 
 // ==================== TEMPORARY DATABASE TEST ====================
 
@@ -55,7 +61,6 @@ app.get("/api/test-user", async (req, res) => {
             message: "User saved successfully",
             user
         });
-
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -64,11 +69,9 @@ app.get("/api/test-user", async (req, res) => {
     }
 });
 
-
 // ==================== DATABASE ====================
 
 connectDB();
-
 
 // ==================== START SERVER ====================
 
