@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge - Resume Management</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .upload-box {
+            border: 2px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            background: #f8fafc;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .upload-box:hover {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+
+        .skill-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            background: #e0e7ff;
+            color: #3730a3;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="sidebar">
+            <h2 class="logo">SkillBridge</h2>
+
+            <nav>
+                <a href="index.html">Dashboard</a>
+                <a href="profile.html">Profile</a>
+                <a href="skills.html">Skills</a>
+                <a href="assessment.html">Assessment</a>
+                <a href="roadmap.html">Roadmap</a>
+                <a href="opportunities.html">Opportunities</a>
+                <a href="applications.html">Applications</a>
+                <a href="resume.html" class="active">Resume</a>
+            </nav>
+
+            <button class="logout-btn">Logout</button>
+        </aside>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <h1>Resume & Document Center</h1>
+                    <p>Upload your resume to extract skills and enable AI-driven candidate matching.</p>
+                </div>
+
+                <div class="profile">
+                    <div class="avatar" id="studentAvatar">--</div>
+                    <div>
+                        <strong id="studentName">Student</strong>
+                        <p id="userRoleLabel">Student Portal</p>
+                    </div>
+                </div>
+            </header>
+
+
+            <section class="content-grid" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+
+                <!-- ================= RESUME UPLOAD SECTION ================= -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h2>Upload Resume</h2>
+                    </div>
+
+                    <!-- BACKEND INTEGRATION: POST request to /api/student/resume/upload -->
+                    <form id="resumeUploadForm">
+                        <div class="upload-box">
+                            <div style="font-size: 36px; margin-bottom: 10px;">📄</div>
+                            <h3 style="margin: 0; color: #1e293b; font-size: 16px;">Drag and drop your file here</h3>
+                            <p style="color: #64748b; font-size: 13px; margin: 8px 0 16px 0;">Supports PDF, DOC, DOCX (Max 5MB)</p>
+                            
+                            <input type="file" id="resumeFileInput" accept=".pdf,.doc,.docx" hidden>
+                            <button type="button" class="primary-btn" onclick="document.getElementById('resumeFileInput').click()" style="padding: 9px 18px; font-size: 13px;">
+                                Browse File
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+
+                <!-- ================= RESUME PARSER STATUS & SKILL EXTRACTOR ================= -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h2>Uploaded Document Status</h2>
+                    </div>
+
+                    <!-- Dynamic State Container for Backend Binding -->
+                    <div id="resumeStatusContainer" class="empty-state" style="padding: 20px; text-align: left;">
+                        
+                        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; margin-bottom: 15px;">
+                            <div>
+                                <strong id="activeResumeName" style="color: #0f172a;">No Resume Uploaded</strong>
+                                <p class="small-text" id="resumeUploadDate">Upload a document to parse skills automatically.</p>
+                            </div>
+                            <span id="resumeStatusBadge" style="padding: 4px 10px; background: #f1f5f9; color: #64748b; border-radius: 6px; font-size: 12px; font-weight: 600;">
+                                Pending
+                            </span>
+                        </div>
+
+                        <h4 style="margin: 10px 0 8px 0; color: #334155; font-size: 14px;">Extracted Skills Placeholder:</h4>
+                        <div id="extractedSkillsContainer">
+                            <span class="skill-badge" style="background: #f1f5f9; color: #94a3b8;">Skill 1</span>
+                            <span class="skill-badge" style="background: #f1f5f9; color: #94a3b8;">Skill 2</span>
+                            <span class="skill-badge" style="background: #f1f5f9; color: #94a3b8;">Skill 3</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
