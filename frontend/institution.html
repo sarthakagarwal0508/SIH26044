@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge - Institution Dashboard</title>
+
+    <!-- Common stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="sidebar">
+
+            <h2 class="logo">SkillBridge</h2>
+
+            <nav>
+                <a href="institution.html" class="active">Overview</a>
+                <a href="#skillGapsSection">Skill Gap Analytics</a>
+                <a href="#placementTrackerSection">Placement Tracker</a>
+            </nav>
+
+            <button class="logout-btn">Logout</button>
+
+        </aside>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="main-content">
+
+            <!-- Page Heading -->
+            <header class="topbar">
+
+                <div>
+                    <h1>Institution Dashboard & Insights</h1>
+
+                    <p>
+                        Monitor aggregate student skill deficiencies and placement progress.
+                    </p>
+                </div>
+
+                <div class="profile">
+                    <div class="avatar" id="instAvatar">
+                        --
+                    </div>
+
+                    <div>
+                        <strong id="instName">
+                            AKGEC Admin
+                        </strong>
+                        <p>Institution Portal</p>
+                    </div>
+                </div>
+
+            </header>
+
+
+            <!-- ================= COLLEGE OVERVIEW ================= -->
+            <section class="stats">
+
+                <!-- 
+                    BACKEND INTEGRATION:
+                    College aggregate numbers fetched from `/api/institution/stats`.
+                -->
+
+                <div class="card">
+                    <p>Total Enrolled</p>
+                    <h2 id="totalStudentsCount">--</h2>
+                    <span>Registered students</span>
+                </div>
+
+                <div class="card">
+                    <p>Active Internships</p>
+                    <h2 id="activeInternshipsCount">--</h2>
+                    <span>Students in training</span>
+                </div>
+
+                <div class="card">
+                    <p>Avg Readiness Score</p>
+                    <h2 id="avgReadinessScore">--</h2>
+                    <span>Batch compatibility</span>
+                </div>
+
+                <div class="card">
+                    <p>Placed Students</p>
+                    <h2 id="placedStudentsCount">--</h2>
+                    <span>Recruitment outcomes</span>
+                </div>
+
+            </section>
+
+
+            <!-- ================= AGGREGATE SKILL GAPS ================= -->
+            <section class="panel profile-section" id="skillGapsSection">
+
+                <div class="panel-heading">
+                    <h2>Aggregate Skill Deficiencies</h2>
+                </div>
+
+                <p class="section-description">
+                    Identified missing skills across student cohorts based on industry assessment results. Helps propose FDPs and targeted workshops.
+                </p>
+
+                <!-- 
+                    BACKEND INTEGRATION:
+                    Data format from API:
+                    [
+                        { domain: "Cloud Computing", deficitPercentage: "48%", branch: "CSE" },
+                        { domain: "DSA", deficitPercentage: "35%", branch: "IT" }
+                    ]
+                    Frontend JS will populate gap rows dynamically.
+                -->
+                <div id="aggregateSkillGapsContainer" class="empty-state">
+
+                    <p>
+                        Aggregate skill deficiency analysis will be generated here.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= PLACEMENT TRACKER ================= -->
+            <section class="panel profile-section" id="placementTrackerSection">
+
+                <div class="panel-heading">
+                    <h2>Placement Progress</h2>
+                </div>
+
+                <!-- 
+                    BACKEND INTEGRATION:
+                    Fetch latest placement updates:
+                    [
+                        { studentName, course, company, package }
+                    ]
+                -->
+                <div id="placementTrackerContainer" class="empty-state">
+
+                    <p>
+                        Placement and recruitment tracking data will appear here.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+    <!-- JavaScript File Linking -->
+    <script src="main.js"></script>
+</body>
+
+</html>

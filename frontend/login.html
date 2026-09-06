@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge - Login</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            background-color: #0f172a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        .login-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-card h2 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: #1e293b;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .login-card p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            color: #334155;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 8px;
+            outline: none;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #2563eb;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+
+        .login-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .login-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .back-link:hover {
+            color: #2563eb;
+        }
+
+        .login-message {
+            display: none;
+            margin-top: 15px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .login-message.error {
+            display: block;
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .login-message.success {
+            display: block;
+            background: #dcfce7;
+            color: #166534;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-card">
+
+        <h2>SkillBridge Login</h2>
+
+        <p>
+            Academia–Industry Collaboration Portal
+        </p>
+
+        <form id="loginForm">
+
+            <div class="form-group">
+                <label for="loginRole">Select Role</label>
+
+                <select id="loginRole" required>
+                    <option value="student">🎓 Student</option>
+                    <option value="company">🏢 Company / Recruiter</option>
+                    <option value="institution">🏛️ Institution Admin</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="loginUser">Email</label>
+
+                <input
+                    type="email"
+                    id="loginUser"
+                    placeholder="Enter your email"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter your password"
+                    required
+                >
+            </div>
+
+            <button
+                type="submit"
+                id="loginButton"
+                class="login-btn"
+            >
+                Login to Portal 🚀
+            </button>
+
+            <div
+                id="loginMessage"
+                class="login-message"
+            ></div>
+
+        </form>
+
+        <a
+            href="index.html"
+            class="back-link"
+        >
+            ← Back to Main Gateway
+        </a>
+
+    </div>
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>
