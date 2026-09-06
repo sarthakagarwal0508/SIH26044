@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>SkillBridge - Login</title>
+
     <link rel="stylesheet" href="style.css">
+
     <style>
-        /* Centered login screen setup */
         body {
             background-color: #0f172a;
             display: flex;
@@ -88,6 +90,11 @@
             background: #1d4ed8;
         }
 
+        .login-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
         .back-link {
             display: block;
             text-align: center;
@@ -100,19 +107,45 @@
         .back-link:hover {
             color: #2563eb;
         }
+
+        .login-message {
+            display: none;
+            margin-top: 15px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .login-message.error {
+            display: block;
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .login-message.success {
+            display: block;
+            background: #dcfce7;
+            color: #166534;
+        }
     </style>
 </head>
 
 <body>
 
     <div class="login-card">
-        <h2>SkillBridge Login</h2>
-        <p>Academia–Industry Collaboration Portal</p>
 
-        <form id="loginForm" onsubmit="handleLogin(event)">
+        <h2>SkillBridge Login</h2>
+
+        <p>
+            Academia–Industry Collaboration Portal
+        </p>
+
+        <form id="loginForm">
 
             <div class="form-group">
-                <label>Select Role</label>
+                <label for="loginRole">Select Role</label>
+
                 <select id="loginRole" required>
                     <option value="student">🎓 Student</option>
                     <option value="company">🏢 Company / Recruiter</option>
@@ -121,39 +154,52 @@
             </div>
 
             <div class="form-group">
-                <label>Email / Username</label>
-                <input type="text" id="loginUser" placeholder="e.g. bhavishya@akgec.ac.in" required>
+                <label for="loginUser">Email</label>
+
+                <input
+                    type="email"
+                    id="loginUser"
+                    placeholder="Enter your email"
+                    required
+                >
             </div>
 
             <div class="form-group">
-                <label>Password</label>
-                <input type="password" placeholder="••••••••" required>
+                <label for="loginPassword">Password</label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter your password"
+                    required
+                >
             </div>
 
-            <button type="submit" class="login-btn">
+            <button
+                type="submit"
+                id="loginButton"
+                class="login-btn"
+            >
                 Login to Portal 🚀
             </button>
 
-            <a href="index.html" class="back-link">← Back to Main Gateway (Switcher)</a>
+            <div
+                id="loginMessage"
+                class="login-message"
+            ></div>
 
         </form>
+
+        <a
+            href="index.html"
+            class="back-link"
+        >
+            ← Back to Main Gateway
+        </a>
+
     </div>
 
-    <script>
-        function handleLogin(event) {
-            event.preventDefault();
-            const role = document.getElementById('loginRole').value;
-            
-            // Role-based redirection logic
-            if (role === 'company') {
-                window.location.href = 'company.html';
-            } else if (role === 'institution') {
-                window.location.href = 'institution.html';
-            } else {
-                window.location.href = 'index.html'; // Default student dashboard
-            }
-        }
-    </script>
+    <script src="main.js"></script>
 
 </body>
 

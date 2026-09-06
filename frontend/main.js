@@ -1,94 +1,444 @@
-// main.js
 // =========================================================
 // MAIN.JS - GLOBAL FRONTEND CONTROLLER
-// Handles Auth, Navigation, Role Redirection, and Logout
+// =========================================================
+
+const API_BASE_URL = "http://localhost:5000/api";
+
+
+// =========================================================
+// PAGE LOAD
 // =========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-    
-    // 1. Setup Logout Buttons across all pages
-    setupLogout();
 
-    // 2. Setup Login Form Handler (if on index/login page)
     setupLoginForm();
 
-    // 3. Load User Data in Header (if logged in)
+    setupLogout();
+
     loadHeaderProfile();
 });
 
 
-// ---------------------------------------------------------
-// LOGOUT FUNCTIONALITY
-// ---------------------------------------------------------
-function setupLogout() {
-    const logoutBtns = document.querySelectorAll(".logout-btn");
-    
-    logoutBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            // Clear simulated session/role
-            localStorage.removeItem("userRole");
-            localStorage.removeItem("userName");
-            
-            alert("Logging out...");
-            
-            // Redirect to main login page
-            window.location.href = "index.html";
-        });
-    });
+// =========================================================
+// LOGIN
+// =========================================================
+
+function setupLoginForm() {
+
+    const loginForm =
+        document.getElementById("loginForm");
+
+    if (!loginForm) {
+        return;
+    }
+
+    loginForm.addEventListener(
+        "submit",
+        handleLogin
+    );
 }
 
 
-// ---------------------------------------------------------
-// LOGIN FORM & ROLE REDIRECTION
-// ---------------------------------------------------------
-function setupLoginForm() {
-    const loginForm = document.getElementById("loginForm");
-    
-    if (loginForm) {
-        loginForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            
-            const roleSelect = document.getElementById("userRole");
-            const nameInput = document.getElementById("userNameInput");
-            
-            const selectedRole = roleSelect ? roleSelect.value : "student";
-            const userName = nameInput && nameInput.value ? nameInput.value : "Bhavishya";
+async function handleLogin(event) {
 
-            // Save details to LocalStorage
-            localStorage.setItem("userRole", selectedRole);
-            localStorage.setItem("userName", userName);
+    event.preventDefault();
 
-            // Route based on selected role
-            if (selectedRole === "company") {
-                window.location.href = "company.html";
-            } else if (selectedRole === "institution") {
-                window.location.href = "institution.html";
+    const role =
+        document.getElementById("loginRole")?.value;
+
+    const email =
+        document.getElementById("loginUser")?.value.trim();
+
+    const password =
+        document.getElementById("loginPassword")?.value;
+
+    const loginButton =
+        document.getElementById("loginButton");
+
+    const message =
+        document.getElementById("loginMessage");
+
+
+    if (!email || !password) {
+
+        showLoginMessage(
+            "Please enter email and password.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    loginButton.disabled = true;
+    loginButton.textContent = "Logging in...";
+
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_BASE_URL}/auth/login`,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        email,
+                        password
+                    })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok || !data.success) {
+
+            throw new Error(
+                data.message ||
+                "Login failed"
+            );
+        }
+
+
+        // =================================================
+        // SAVE AUTH DATA
+        // =================================================
+
+        localStorage.setItem(
+            "authToken",
+            data.token
+        );
+
+        localStorage.setItem(
+            "userRole",
+            role
+        );
+
+        if (data.user?.name) {
+
+            localStorage.setItem(
+                "userName",
+                data.user.name
+            );
+
+        } else {
+
+            localStorage.setItem(
+                "userName",
+                email.split("@")[0]
+            );
+        }
+
+
+        if (data.user?.id) {
+
+            localStorage.setItem(
+                "userId",
+                data.user.id
+            );
+
+        }
+
+
+        showLoginMessage(
+            "Login successful. Redirecting...",
+            "success"
+        );
+
+
+        // =================================================
+        // ROLE REDIRECTION
+        // =================================================
+
+        setTimeout(() => {
+
+            if (role === "company") {
+
+                window.location.href =
+                    "company.html";
+
+            } else if (role === "institution") {
+
+                window.location.href =
+                    "institution.html";
+
             } else {
-                window.location.href = "profile.html"; // Default Student route
+
+                window.location.href =
+                    "index.html";
             }
-        });
+
+        }, 500);
+
+
+    } catch (error) {
+
+        console.error(
+            "Login error:",
+            error
+        );
+
+        showLoginMessage(
+            error.message ||
+            "Unable to connect to backend.",
+            "error"
+        );
+
+        loginButton.disabled = false;
+        loginButton.textContent =
+            "Login to Portal 🚀";
     }
 }
 
 
-// ---------------------------------------------------------
-// DYNAMIC HEADER PROFILE LOADER
-// ---------------------------------------------------------
+// =========================================================
+// LOGIN MESSAGE
+// =========================================================
+
+function showLoginMessage(
+    text,
+    type
+) {
+
+    const message =
+        document.getElementById(
+            "loginMessage"
+        );
+
+    if (!message) {
+        return;
+    }
+
+    message.textContent = text;
+
+    message.className =
+        `login-message ${type}`;
+}
+
+
+// =========================================================
+// LOGOUT
+// =========================================================
+
+function setupLogout() {
+
+    const logoutButtons =
+        document.querySelectorAll(
+            ".logout-btn"
+        );
+
+
+    logoutButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                localStorage.removeItem(
+                    "authToken"
+                );
+
+                localStorage.removeItem(
+                    "userRole"
+                );
+
+                localStorage.removeItem(
+                    "userName"
+                );
+
+                localStorage.removeItem(
+                    "userId"
+                );
+
+                window.location.href =
+                    "login.html";
+            }
+        );
+    });
+}
+
+
+// =========================================================
+// HEADER PROFILE
+// =========================================================
+
 function loadHeaderProfile() {
-    const userName = localStorage.getItem("userName") || "Student";
-    
-    // Find profile elements on page
-    const studentNameEl = document.getElementById("studentName");
-    const studentAvatarEl = document.getElementById("studentAvatar");
-    const profileNameEl = document.getElementById("profileName");
-    const profileAvatarEl = document.getElementById("profileAvatar");
 
-    // Get first letter for avatar circle
-    const initial = userName.charAt(0).toUpperCase();
+    const userName =
+        localStorage.getItem(
+            "userName"
+        ) || "Student";
 
-    // Update Topbar Info if elements exist on current page
-    if (studentNameEl) studentNameEl.textContent = userName;
-    if (studentAvatarEl) studentAvatarEl.textContent = initial;
-    if (profileNameEl) profileNameEl.textContent = userName;
-    if (profileAvatarEl) profileAvatarEl.textContent = initial;
+
+    const studentNameEl =
+        document.getElementById(
+            "studentName"
+        );
+
+    const studentAvatarEl =
+        document.getElementById(
+            "studentAvatar"
+        );
+
+    const profileNameEl =
+        document.getElementById(
+            "profileName"
+        );
+
+    const profileAvatarEl =
+        document.getElementById(
+            "profileAvatar"
+        );
+
+
+    const companyNameEl =
+        document.getElementById(
+            "companyName"
+        );
+
+
+    const companyAvatarEl =
+        document.getElementById(
+            "companyAvatar"
+        );
+
+
+    const initial =
+        userName.charAt(0).toUpperCase();
+
+
+    if (studentNameEl) {
+
+        studentNameEl.textContent =
+            userName;
+    }
+
+
+    if (studentAvatarEl) {
+
+        studentAvatarEl.textContent =
+            initial;
+    }
+
+
+    if (profileNameEl) {
+
+        profileNameEl.textContent =
+            userName;
+    }
+
+
+    if (profileAvatarEl) {
+
+        profileAvatarEl.textContent =
+            initial;
+    }
+
+
+    if (companyNameEl) {
+
+        companyNameEl.textContent =
+            userName;
+    }
+
+
+    if (companyAvatarEl) {
+
+        companyAvatarEl.textContent =
+            initial;
+    }
+}
+
+
+// =========================================================
+// AUTH TOKEN HELPER
+// =========================================================
+
+function getAuthToken() {
+
+    return localStorage.getItem(
+        "authToken"
+    );
+}
+
+
+// =========================================================
+// AUTHENTICATED FETCH HELPER
+// =========================================================
+
+async function apiFetch(
+    endpoint,
+    options = {}
+) {
+
+    const token =
+        getAuthToken();
+
+
+    const headers = {
+        ...(options.headers || {})
+    };
+
+
+    if (!headers["Content-Type"] &&
+        !(options.body instanceof FormData)) {
+
+        headers["Content-Type"] =
+            "application/json";
+    }
+
+
+    if (token) {
+
+        headers["Authorization"] =
+            `Bearer ${token}`;
+    }
+
+
+    const response =
+        await fetch(
+            `${API_BASE_URL}${endpoint}`,
+            {
+                ...options,
+                headers
+            }
+        );
+
+
+    if (response.status === 401) {
+
+        localStorage.removeItem(
+            "authToken"
+        );
+
+        window.location.href =
+            "login.html";
+
+        throw new Error(
+            "Session expired. Please login again."
+        );
+    }
+
+
+    const data =
+        await response.json();
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            data.message ||
+            "API request failed"
+        );
+    }
+
+
+    return data;
 }
