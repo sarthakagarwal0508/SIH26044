@@ -107,24 +107,28 @@
                         <h2>Uploaded Document Status</h2>
                     </div>
 
-                    <!-- Dynamic State Container for Backend Binding -->
-                    <div id="resumeStatusContainer" class="empty-state" style="padding: 20px; text-align: left;">
+                    <!-- Clean Vertical Flex Layout -->
+                    <div id="resumeStatusContainer" class="empty-state" style="padding: 24px; text-align: left; display: flex; flex-direction: column; gap: 16px;">
                         
-                        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; margin-bottom: 15px;">
+                        <!-- Header Row: Resume Title & Status Badge -->
+                        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px;">
                             <div>
-                                <strong id="activeResumeName" style="color: #0f172a;">No Resume Uploaded</strong>
-                                <p class="small-text" id="resumeUploadDate">Upload a document to parse skills automatically.</p>
+                                <strong id="activeResumeName" style="color: #0f172a; font-size: 15px; display: block; margin-bottom: 4px;">No Resume Uploaded</strong>
+                                <p class="small-text" id="resumeUploadDate" style="margin: 0; color: #64748b;">Upload a document to parse skills automatically.</p>
                             </div>
-                            <span id="resumeStatusBadge" style="padding: 4px 10px; background: #f1f5f9; color: #64748b; border-radius: 6px; font-size: 12px; font-weight: 600;">
+                            <span id="resumeStatusBadge" style="padding: 6px 12px; background: #f1f5f9; color: #64748b; border-radius: 6px; font-size: 12px; font-weight: 600;">
                                 Pending
                             </span>
                         </div>
 
-                        <h4 style="margin: 10px 0 8px 0; color: #334155; font-size: 14px;">Extracted Skills Placeholder:</h4>
-                        <div id="extractedSkillsContainer">
-                            <span class="skill-badge" style="background: #f1f5f9; color: #94a3b8;">Skill 1</span>
-                            <span class="skill-badge" style="background: #f1f5f9; color: #94a3b8;">Skill 2</span>
-                            <span class="skill-badge" style="background: #f1f5f9; color: #94a3b8;">Skill 3</span>
+                        <!-- Extracted Skills Section -->
+                        <div>
+                            <h4 style="margin: 0 0 10px 0; color: #334155; font-size: 14px; font-weight: 600;">Extracted Skills Placeholder:</h4>
+                            <div id="extractedSkillsContainer" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                <span class="skill-badge" style="background: #f1f5f9; color: #94a3b8; padding: 6px 12px; border-radius: 20px; font-size: 13px;">Skill 1</span>
+                                <span class="skill-badge" style="background: #f1f5f9; color: #94a3b8; padding: 6px 12px; border-radius: 20px; font-size: 13px;">Skill 2</span>
+                                <span class="skill-badge" style="background: #f1f5f9; color: #94a3b8; padding: 6px 12px; border-radius: 20px; font-size: 13px;">Skill 3</span>
+                            </div>
                         </div>
 
                     </div>
