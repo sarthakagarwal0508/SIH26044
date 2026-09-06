@@ -11,6 +11,10 @@ const matchingRoutes = require("./routes/matchingRoutes");
 const authMiddleware = require("./middleware/authMiddleware");
 const studentRoutes = require("./routes/studentRoutes");
 const skillRoutes = require("./routes/skillRoutes");
+const applicationRoutes = require("./routes/applicationRoutes");
+const assessmentRoutes = require("./routes/assessmentRoutes");
+const roadmapRoutes = require("./routes/roadmapRoutes");
+const aiRoutes = require("./routes/aiRoutes");
 
 const app = express();
 
@@ -44,6 +48,18 @@ app.use("/api/matching", matchingRoutes);
 
 // Skill routes
 app.use("/api/skills", skillRoutes);
+
+// Application routes
+app.use("/api/applications", applicationRoutes);
+    
+// Assessment routes
+app.use("/api/assessments", assessmentRoutes);
+
+// Roadmap routes
+app.use("/api/roadmap", roadmapRoutes);
+
+// AI routes
+app.use("/api/ai", aiRoutes);
 
 // ==================== PROTECTED ROUTE ====================
 
