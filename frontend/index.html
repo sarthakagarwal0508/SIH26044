@@ -28,13 +28,6 @@
 
             <h2 class="logo">SkillBridge</h2>
 
-            <!--
-                FRONTEND NAVIGATION
-
-                Currently HTML pages are linked directly.
-                Later, if project shifts to React,
-                these can be converted into React routes.
-            -->
             <nav>
                 <!-- Current page -->
                 <a href="index.html" class="active">Dashboard</a>
@@ -47,12 +40,6 @@
                 <a href="applications.html">Applications</a>
             </nav>
 
-
-            <!--
-                BACKEND/AUTH INTEGRATION LATER:
-                Logout functionality will be connected
-                after authentication system is ready.
-            -->
             <button class="logout-btn">
                 Logout
             </button>
@@ -62,126 +49,106 @@
 
         <!-- ================= MAIN CONTENT ================= -->
         <main class="main-content">
-
+            <!-- ================= TOP BAR ================= -->
+            <!-- <header class="topbar">
+                <div>
+                    <h1>Student Dashboard</h1>
+                    <p>
+                        Track your skills, progress and opportunities.
+                    </p>
+                </div> -->
 
             <!-- ================= TOP BAR ================= -->
             <header class="topbar">
 
                 <div>
-                    <h1>Student Dashboard</h1>
-
+                    <h1>SkillBridge Portal</h1>
                     <p>
-                        Track your skills, progress and opportunities.
+                        Academia-Industry Collaboration & Skill Assessment Platform
                     </p>
                 </div>
 
+                <!-- Quick Switcher for Demo / Testing -->
+                <div style="display: flex; gap: 12px; align-items: center;">
 
-                <!--
-                    BACKEND INTEGRATION:
+                    <select id="portalSwitcher" onchange="switchPortal(this.value)" style="padding: 9px 14px; border-radius: 8px; border: 1.5px solid #2563eb; background: #eff6ff; color: #2563eb; font-weight: bold; cursor: pointer; outline: none;">
+                        <option value="">Select / Switch Role 🔽</option>
+                        <option value="student">🎓 Student View</option>
+                        <option value="company">🏢 Company / Recruiter View</option>
+                        <option value="institution">🏛️ Institution Admin View</option>
+                    </select>
 
-                    Logged-in student's information will
-                    later be received from backend API.
+                    <div class="profile">
+                        <div class="avatar" id="studentAvatar">
+                            --
+                        </div>
 
-                    No personal data is hardcoded here.
-                -->
-                <div class="profile">
-
-                    <!-- Profile image / initials placeholder -->
-                    <div class="avatar" id="studentAvatar">
-                        --
-                    </div>
-
-                    <div>
-                        <strong id="studentName">
-                            Student
-                        </strong>
-
-                        <p>Student</p>
+                        <div>
+                            <strong id="studentName">
+                                Student
+                            </strong>
+                            <p id="userRoleLabel">Student Portal</p>
+                        </div>
                     </div>
 
                 </div>
 
             </header>
 
+            <script>
+                function switchPortal(role) {
+                    if (role === 'company') {
+                        window.location.href = 'company.html';
+                    } else if (role === 'institution') {
+                        window.location.href = 'institution.html';
+                    } else if (role === 'student') {
+                        window.location.href = 'index.html';
+                    }
+                }
+            </script>
+
 
             <!-- ================= STAT CARDS ================= -->
             <section class="stats">
 
-
-                <!--
-                    BACKEND DATA:
-                    Profile completion percentage
-                -->
                 <div class="card">
-
                     <p>Profile Completion</p>
-
                     <h2 id="profileCompletion">
                         --
                     </h2>
-
                     <span>
                         Complete your student profile
                     </span>
-
                 </div>
 
-
-                <!--
-                    BACKEND DATA:
-                    Overall skill score calculated
-                    from assessments.
-                -->
                 <div class="card">
-
                     <p>Skill Score</p>
-
                     <h2 id="skillScore">
                         --
                     </h2>
-
                     <span>
                         Based on skill assessments
                     </span>
-
                 </div>
 
-
-                <!--
-                    BACKEND DATA:
-                    Matching opportunities count
-                -->
                 <div class="card">
-
                     <p>Opportunities</p>
-
                     <h2 id="opportunityCount">
                         --
                     </h2>
-
                     <span>
                         Matching your skill profile
                     </span>
-
                 </div>
 
-
-                <!--
-                    BACKEND DATA:
-                    Total student applications
-                -->
                 <div class="card">
-
                     <p>Applications</p>
-
                     <h2 id="applicationCount">
                         --
                     </h2>
-
                     <span>
                         Track your applications
                     </span>
-
                 </div>
 
             </section>
@@ -190,46 +157,20 @@
             <!-- ================= MAIN DASHBOARD GRID ================= -->
             <section class="content-grid">
 
-
                 <!-- ================= SKILLS ================= -->
                 <div class="panel">
 
                     <div class="panel-heading">
-
                         <h2>Your Skills</h2>
-
-                        <a href="#">
+                        <a href="skills.html">
                             View All
                         </a>
-
                     </div>
 
-
-                    <!--
-                        BACKEND INTEGRATION:
-
-                        Student skills will later be inserted here.
-
-                        Example data from backend:
-
-                        [
-                            {
-                                skill: "JavaScript",
-                                score: 80
-                            }
-                        ]
-
-                        Frontend will use the received score
-                        to create skill name, percentage
-                        and progress bar.
-                    -->
-                    <div id="skillsContainer"
-                         class="empty-state">
-
+                    <div id="skillsContainer" class="empty-state">
                         <p>
                             Skill data will appear here after assessment.
                         </p>
-
                     </div>
 
                 </div>
@@ -239,36 +180,20 @@
                 <div class="panel">
 
                     <div class="panel-heading">
-
                         <h2>Skill Gap</h2>
-
-                        <a href="#">
+                        <a href="roadmap.html">
                             Roadmap
                         </a>
-
                     </div>
-
 
                     <p class="small-text">
                         Skills that need improvement will appear here.
                     </p>
 
-
-                    <!--
-                        BACKEND INTEGRATION:
-
-                        Skill-gap engine will provide
-                        missing / weak skills.
-
-                        Frontend only displays that result.
-                    -->
-                    <div id="skillGapContainer"
-                         class="empty-state">
-
+                    <div id="skillGapContainer" class="empty-state">
                         <p>
                             No skill-gap data available yet.
                         </p>
-
                     </div>
 
                 </div>
@@ -280,35 +205,16 @@
             <section class="panel opportunities">
 
                 <div class="panel-heading">
-
                     <h2>Recommended Opportunities</h2>
-
-                    <a href="#">
+                    <a href="opportunities.html">
                         View All
                     </a>
-
                 </div>
 
-
-                <!--
-                    BACKEND INTEGRATION:
-
-                    Matching engine will send opportunities such as:
-
-                    - Job / Internship title
-                    - Company name
-                    - Match percentage
-                    - Opportunity ID
-
-                    Frontend will display that information here.
-                -->
-                <div id="opportunitiesContainer"
-                     class="empty-state">
-
+                <div id="opportunitiesContainer" class="empty-state">
                     <p>
                         Recommended opportunities will appear here.
                     </p>
-
                 </div>
 
             </section>
@@ -317,6 +223,8 @@
 
     </div>
 
+    <!-- JavaScript File Linking -->
+    <script src="main.js"></script>
 </body>
 
 </html>
