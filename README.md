@@ -1,115 +1,432 @@
-# AyurSetu &mdash; Portal for Academia-Industry Collaboration
+# SIH26044 — Student–Company Opportunity Platform
 
-**Smart India Hackathon 2026** &middot; **Problem Statement:** SIH26044  
-**Organization:** Ministry of Ayush &middot; **Category:** Software  
-**Frontend Lead (Company & Institution Module):** Shreyash (Person 4)
+A full-stack platform developed for **Smart India Hackathon 2026 (SIH26044)** to connect students with companies and help students discover and apply for relevant opportunities such as internships and jobs.
 
 ---
 
-## 📌 Project Overview
-AyurSetu is a digital bridge connecting academic institutions (Ayurveda, Unani, Siddha, Homeopathy, Yoga, and Herbal Biotechnology institutes) with industry leaders (pharmaceutical companies, clinical research organizations, wellness labs) for:
-1. **Dynamic Skill Mapping:** Assessing student competencies against real-time industry demands.
-2. **Weighted Skill Hiring:** Enabling companies to define "Must-Have", "Desirable", and "Bonus" skills with numeric importance weights (1–10).
-3. **AI-Driven Match Index:** Instantly ranking applicants by match percentage and highlighting exact skill overlaps vs. deficits.
-4. **Institutional Skill Gap Analytics:** Providing Deans and Placement Officers with live heatmaps, department-level readiness indices, and curriculum intervention recommendations.
+## 📌 Problem
+
+Students often struggle to find suitable opportunities because job and internship information is scattered across different platforms. Companies also face difficulties in reaching students with the right skills and profiles.
+
+The goal of this project is to provide a **single platform** where:
+
+* Students can create and manage their profiles.
+* Students can discover suitable jobs and internships.
+* Students can apply for opportunities.
+* Companies can create and manage job/internship listings.
+* Companies can view and manage applications.
+* The complete process can be managed through a centralized backend.
 
 ---
 
-## 👥 Team Work Division Alignment
+## 🎯 Objectives
 
-| Member | Primary Role | Core Focus |
-| :--- | :--- | :--- |
-| **Sarthak** | Backend Lead | Express structure, API routes, database connections |
-| **Lakshya** | Backend & Matching | MongoDB, Skill matching algorithm, match % logic |
-| **Bhavishya**| Frontend (Student) | Student dashboard, profile, assessment questions |
-| **Shreyash** | Frontend (Industry & Institution) | **Company Dashboard, Job Posting with Skill Weights, Applicant Screening, Match %, Candidate Profile, Institution Analytics, Skill-Gap Heatmaps** |
-| **Sonakshi** | Data & Testing | Dummy data, assessment question bank, testing |
-| **Srashti** | Research & PPT | Problem research, presentation, demo sequence |
-
----
-
-## 🚀 Features Implemented by Shreyash (Person 4)
-
-### 1. 🏢 Company / Industry Portal
-- **Dashboard Overview:** KPI metrics for Active Postings, Total Received Applicants, Shortlisted Talent, and High-Fit Candidates (≥85%).
-- **Internship / Job Creation Wizard:** 
-  - Comprehensive form (Role title, department, stipend, engagement duration, location, deadline).
-  - **Skill Weightage Matrix:** Add skills from the standardized Ayush taxonomy and assign importance (*Must-Have*, *Desirable*, *Bonus*) and weight sliders (1–10).
-- **Candidate Screening & Filtering:**
-  - Filter applicants by job opening, status, or minimum match percentage.
-  - Quick actions for shortlisting or rejecting directly from the table.
-- **Candidate Profile Deep-Dive Modal:**
-  - Academic credentials, CGPA, verified college endorsement badge.
-  - Visual competency breakdown with proficiency bars.
-  - Direct actions: **Shortlist**, **Reject**, or **Schedule Interview** with instant state updates.
-
-### 2. 🏛️ Academic Institution / College Portal
-- **Dean / TPO Executive KPI Cards:** Enrolled Scholars, Assessed Students, Institutional Employability Index, and Placement Conversions.
-- **Interactive Visual Analytics (Recharts):**
-  - **Skill Gap Comparison Heatmap:** Student Cohort Average vs. Industry Hiring Demand score.
-  - **Department-wise Readiness:** Percentage of placement-ready students across Dravyaguna, Rasa Shastra, Kayachikitsa, Panchakarma, etc.
-  - **Trending Industry Skills:** High-growth skills demanding attention in upcoming quarters.
-- **AI-Driven Curriculum Recommendations:**
-  - Automated bridge course suggestions (e.g. Chromatography, GCP trials, GMP cleanrooms) with projected placement impact.
-- **Student Cohort Registry:**
-  - Searchable student cohort table with roll numbers, assessment scores, and placement statuses.
-
-### 3. 🎓 End-to-End Demo Flow (Student Preview)
-- Interactive role-switcher on the top navbar allowing seamless switching between **Company**, **Institution**, and **Student** views during hackathon judging.
-- Allows applying as a student and immediately witnessing the candidate pop up in the Company review queue!
-
-### 4. 🔌 Ready for Backend Integration (Sarthak & Lakshya)
-- Centralized adapter in `src/services/api.js`.
-- Flip `export const USE_MOCK_DATA = false;` to seamlessly route all calls to the Node.js/Express backend at `http://localhost:5000/api`.
+* Create a centralized student–company platform.
+* Provide secure user authentication.
+* Maintain student and company profiles.
+* Allow companies to post opportunities.
+* Allow students to search and apply for opportunities.
+* Manage applications digitally.
+* Store data permanently using a database.
+* Provide a scalable REST API-based backend.
+* Integrate frontend and backend into one complete system.
 
 ---
 
-## 🛠️ Tech Stack
-- **Framework:** React 18 with Vite
-- **Styling:** Tailwind CSS v4
-- **Icons:** Lucide React
-- **Data Visualization:** Recharts
-- **Typography:** Plus Jakarta Sans & JetBrains Mono
+## 🛠️ Technology Stack
+
+### Frontend
+
+* HTML
+* CSS
+* JavaScript
+* *(Frontend framework/libraries can be added as development progresses.)*
+
+### Backend
+
+* Node.js
+* Express.js
+* REST APIs
+
+### Database
+
+* MongoDB
+
+### Development Tools
+
+* Git
+* GitHub
+* VS Code
+* Postman
 
 ---
 
-## 🏃 Local Setup & Run
+## 🏗️ Project Architecture
 
-1. Clone or navigate to the project directory:
-   ```bash
-   cd sih-ayush-portal
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Run the development server:
-   ```bash
-   npm run dev
-   ```
-
-4. Build for production:
-   ```bash
-   npm run build
-   ```
+```text
+                    ┌─────────────────────┐
+                    │      Frontend       │
+                    │ HTML / CSS / JS     │
+                    └──────────┬──────────┘
+                               │
+                               │ HTTP Requests
+                               ▼
+                    ┌─────────────────────┐
+                    │      Backend        │
+                    │   Node.js + Express │
+                    └──────────┬──────────┘
+                               │
+                         REST APIs
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │      MongoDB        │
+                    │     Database        │
+                    └─────────────────────┘
+```
 
 ---
 
-## 📤 Pushing to GitHub
+## 👥 User Roles
 
-To push this project to your GitHub repository:
+### 👨‍🎓 Student
+
+Students will be able to:
+
+* Register and log in.
+* Create and update their profile.
+* Add skills and educational information.
+* Browse available jobs and internships.
+* Search/filter opportunities.
+* View opportunity details.
+* Apply for opportunities.
+* Track their applications.
+
+### 🏢 Company
+
+Companies will be able to:
+
+* Register and log in.
+* Create and manage their company profile.
+* Post jobs and internships.
+* Edit or remove their listings.
+* View applications.
+* Manage candidate applications.
+
+---
+
+## ⚙️ Core Features
+
+### Authentication
+
+* Student registration
+* Company registration
+* Login/logout
+* Password protection
+* Role-based access
+
+### Student Management
+
+* Student profile
+* Education details
+* Skills
+* Resume/details
+* Application history
+
+### Company Management
+
+* Company profile
+* Company information
+* Opportunity management
+* Application management
+
+### Job & Internship Management
+
+* Create opportunity
+* Update opportunity
+* Delete opportunity
+* View opportunity
+* Search and filter opportunities
+
+### Application System
+
+* Student applies to an opportunity
+* Application stored in database
+* Company can view applications
+* Application status can be managed
+
+---
+
+## 📂 Planned Project Structure
+
+```text
+SIH26044/
+│
+├── frontend/
+│   ├── index.html
+│   ├── css/
+│   ├── js/
+│   └── assets/
+│
+├── backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── services/
+│   ├── app.js
+│   └── server.js
+│
+├── README.md
+├── .gitignore
+└── package.json
+```
+
+The structure may change as development progresses.
+
+---
+
+## 🔌 Backend API Structure
+
+The backend will expose REST APIs for different modules.
+
+Example:
+
+```text
+/api/auth
+/api/students
+/api/companies
+/api/jobs
+/api/internships
+/api/applications
+```
+
+Example API operations:
+
+```text
+POST   /api/auth/register
+POST   /api/auth/login
+
+GET    /api/jobs
+POST   /api/jobs
+GET    /api/jobs/:id
+PUT    /api/jobs/:id
+DELETE /api/jobs/:id
+
+POST   /api/applications
+GET    /api/applications
+GET    /api/applications/:id
+PUT    /api/applications/:id
+```
+
+The exact API structure will be finalized during backend development.
+
+---
+
+## 🗄️ Database
+
+The project uses **MongoDB** for persistent data storage.
+
+Possible collections:
+
+```text
+users
+students
+companies
+jobs
+internships
+applications
+```
+
+The database ensures that registered users, opportunities, and applications remain available even after restarting the application.
+
+---
+
+## 🔐 Security
+
+The backend will include:
+
+* Password hashing
+* Authentication
+* Authorization
+* Role-based access control
+* Input validation
+* Protected API routes
+* Environment variables for sensitive configuration
+
+Sensitive information such as database credentials will **not** be stored directly in the source code.
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
 
 ```bash
-# 1. Initialize git (already initialized in this directory)
-git add .
-git commit -m "feat: complete company & institution portal for SIH26044 by Shreyash"
-
-# 2. Add your GitHub remote (replace with your repo URL)
-git remote add origin https://github.com/<YOUR_USERNAME>/<YOUR_REPO_NAME>.git
-git branch -M main
-
-# 3. Push to GitHub
-git push -u origin main
+git clone <repository-url>
 ```
+
+### 2. Move into the project
+
+```bash
+cd SIH26044
+```
+
+### 3. Install backend dependencies
+
+```bash
+cd backend
+npm install
+```
+
+### 4. Configure environment variables
+
+Create a `.env` file:
+
+```env
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+```
+
+### 5. Start the backend
+
+```bash
+npm run dev
+```
+
+or:
+
+```bash
+npm start
+```
+
+### 6. Start the frontend
+
+Open the frontend through the configured development server or browser setup.
+
+---
+
+## 🧪 Testing
+
+API testing can be performed using **Postman**.
+
+Important areas to test:
+
+* Registration
+* Login
+* Authentication
+* Student profile
+* Company profile
+* Job creation
+* Job retrieval
+* Applications
+* Authorization
+* Database operations
+
+---
+
+## 👨‍💻 Team Work Division
+
+### Sarthak — Team Leader + Backend Lead
+
+* Overall backend architecture
+* Node.js + Express.js
+* REST APIs
+* Authentication
+* Database connection
+* Student/company/job/application backend
+* Frontend-backend integration
+* Overall team coordination
+* Final presentation
+
+### Backend Developer
+
+* Backend development alongside Sarthak
+* MongoDB
+* Data management
+* Database-related implementation
+* Supporting backend APIs
+
+### Frontend Team
+
+* User interface
+* Student dashboard
+* Company dashboard
+* Job/internship pages
+* Forms
+* Frontend-backend integration support
+
+### Other Team Members
+
+* UI/UX and design
+* Documentation
+* Testing
+* Research
+* Presentation
+* Supporting assigned modules
+
+> The authoritative team responsibilities should be maintained according to the latest team work-division document.
+
+---
+
+## 📈 Future Scope
+
+The platform can later be extended with:
+
+* AI-based job recommendations
+* Skill-based opportunity matching
+* Resume analysis
+* Smart candidate ranking
+* Notifications
+* Email integration
+* Advanced company dashboards
+* Analytics
+* Admin panel
+* Automated application tracking
+* Improved search and filtering
+
+AI integration will be considered **after the core backend and platform functionality are completed**, depending on available development time.
+
+---
+
+## 🤝 Contribution
+
+All team members should work on their assigned modules and follow the project's common Git workflow.
+
+Before pushing code:
+
+```bash
+git pull
+```
+
+After completing changes:
+
+```bash
+git add .
+git commit -m "Describe your changes"
+git push
+```
+
+Avoid directly modifying another teammate's module without coordination.
+
+---
+
+## 📜 Project Status
+
+🚧 **Currently under development**
+
+The project is being developed as part of:
+
+**Smart India Hackathon 2026**
+
+**Problem Statement:** SIH26044
+
+---
+
+## ⭐ Vision
+
+Our vision is to build a reliable and centralized platform that makes it easier for **students to discover opportunities and for companies to find suitable talent**.
+
+> **Connect. Discover. Apply. Grow.**
